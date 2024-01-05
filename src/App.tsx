@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './component/Header/Header';
 
 function App() {
   return (
-    <div>
+    <>
+      <Header/>
 
-    </div>
+    </>
   );
 }
 
