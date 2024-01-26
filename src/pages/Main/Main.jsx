@@ -6,6 +6,7 @@ import NewsList from '../../component/NewsList/NewsList';
 import Skeleton from "../../component/Skeleton/Skeleton";
 import Pogination from "../../component/Pogination/Pogination";
 import Categories from "../../component/Categories/Categories";
+import Search from "../../component/Search/Search";
 
 const Main = () => {
     const [news,setNews] = useState([])
@@ -13,6 +14,8 @@ const Main = () => {
     const [selectedCategory,setSelectedCategory] = useState("ALL")
     const [isLoading,setIsLoading] = useState(true)
     const [currentPage,setCurrentPage] = useState(1)
+    const [keywords,setKeywords] = useState('')
+
     const totalPages = 10
     const pageSize = 10
 
@@ -22,7 +25,8 @@ const Main = () => {
             const response = await getNews({
                 page_number:currentPage,
                 page_size:pageSize,
-                category:selectedCategory==="All" ? null : selectedCategory
+                category:selectedCategory==="All" ? null : selectedCategory,
+                keywords:keywords,
 
             })
             setNews(response.news)
@@ -48,7 +52,7 @@ const Main = () => {
     useEffect(()=>{
 
         fetchNews(currentPage)
-    },[currentPage,selectedCategory])
+    },[currentPage,selectedCategory,keywords])
 
 
     const handlerNextPage = () => {
@@ -69,6 +73,10 @@ const Main = () => {
         <Categories categories={categories}
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory}/>
+
+        <Search keywords={keywords}
+                setKeywords={setKeywords}/>
+
         {news.length > 0 && !isLoading
             ? (<Banner item={news[0]}/>)
         : (<Skeleton type={"banner"} count={1}/>)
