@@ -1,12 +1,8 @@
 import React from 'react';
 import styles from '../NewsByFilters/newsByFilters.module.css'
-import Categories from "../Categories/Categories";
-import Search from "../Search/Search";
 import Pogination from "../Pogination/Pogination";
 import {TOTAL_PAGES} from "../../constants/constants";
 import NewsList from "../NewsList/NewsList";
-import {useFetch} from "../../helpers/hooks/useFetch";
-import {getCategories} from "../../Api/apiNews";
 import NewsFilters from "../NewsFilters/NewsFilters";
 
 export const NewsByFilters = ({
@@ -15,8 +11,6 @@ export const NewsByFilters = ({
                                   isLoading,
                                   news,
                               }) => {
-
-    // const {data:dataCategories} = useFetch(getCategories)
 
     const handlerNextPage = () => {
         if (filters.page_number < TOTAL_PAGES){
@@ -46,9 +40,7 @@ export const NewsByFilters = ({
         />
 
         <NewsList isLoading={isLoading} news={news}/>
-        {/*{!isLoading ? <NewsList news={news}/>*/}
-        {/*: (<Skeleton type={"item"} count={10}/>)*/}
-        {/*}*/}
+
         <Pogination handlerNextPage={handlerNextPage}
                     handlerPreviousPage={handlerPreviousPage}
                     handlerPageClick={handlerPageClick}

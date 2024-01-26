@@ -2,7 +2,6 @@ import React from 'react';
 import styles from '../NewsItem/newsItem.module.css'
 import {formatTimeAgo} from '../../helpers/formatTimeAgo';
 
-// @ts-ignore
 const NewsItem = ({item}) => {
     return(
     <li className={styles.item}>

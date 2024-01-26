@@ -3,7 +3,6 @@ import styles from '../NewsList/newsList.module.css'
 import NewsItem from '../NewsItem/NewsItem';
 import withSkeleton from "../../helpers/hocs/withSkeleton";
 
-// @ts-ignore
 const NewsList = ({news}) => {
     return(
     <ul className={styles.list}>

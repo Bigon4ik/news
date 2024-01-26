@@ -1,5 +1,4 @@
 import React from 'react';
-import {formatData} from '../../helpers/formatData';
 import styles from '../NewsFilters/newsFilters.module.css'
 import Categories from "../Categories/Categories";
 import Search from "../Search/Search";

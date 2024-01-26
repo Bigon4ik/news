@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '../Image/image.module.css'
 
-// @ts-ignore
 const Image = ({image}) => {
     return(
     <div className={styles.wrapper}>
