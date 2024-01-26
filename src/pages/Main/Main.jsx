@@ -7,6 +7,7 @@ import Skeleton from "../../component/Skeleton/Skeleton";
 import Pogination from "../../component/Pogination/Pogination";
 import Categories from "../../component/Categories/Categories";
 import Search from "../../component/Search/Search";
+import {useDebounce} from "../../helpers/hooks/useDebounce";
 
 const Main = () => {
     const [news,setNews] = useState([])
@@ -19,6 +20,8 @@ const Main = () => {
     const totalPages = 10
     const pageSize = 10
 
+    const debouncedKeywords = useDebounce(keywords,1500)
+
     const fetchNews = async (currentPage) => {
         try {
             setIsLoading(true);
@@ -26,7 +29,7 @@ const Main = () => {
                 page_number:currentPage,
                 page_size:pageSize,
                 category:selectedCategory==="All" ? null : selectedCategory,
-                keywords:keywords,
+                keywords:debouncedKeywords,
 
             })
             setNews(response.news)
@@ -52,7 +55,7 @@ const Main = () => {
     useEffect(()=>{
 
         fetchNews(currentPage)
-    },[currentPage,selectedCategory,keywords])
+    },[currentPage,selectedCategory,debouncedKeywords])
 
 
     const handlerNextPage = () => {
