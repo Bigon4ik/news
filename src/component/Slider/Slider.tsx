@@ -1,16 +1,23 @@
 import React, {useRef} from 'react';
 import styles from '../Slider/slider.module.css'
+import {INews} from '../../interfaces';
 
+interface Props{
+    children:React.ReactElement;
+    step?:number
+}
 
-export const Slider = ({children,step= 150}) => {
+export const Slider = ({children,step= 150}:Props) => {
 
-    const sliderRef =  useRef(null)
+    const sliderRef =  useRef<HTMLElement | null>(null)
 
     const scrollLeft = () => {
+        if(!sliderRef.current) return
        sliderRef.current.scrollLeft -= step
     }
     const scrollRight = () => {
-        sliderRef.current.scrollLeft += step
+        if(!sliderRef.current) return
+            sliderRef.current.scrollLeft += step
     }
     return(
         <div className={styles.slider}>

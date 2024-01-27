@@ -5,10 +5,17 @@ import Search from "../Search/Search";
 import {useFetch} from "../../helpers/hooks/useFetch";
 import {getCategories} from "../../Api/apiNews";
 import Slider from "../Slider/Slider";
+import {CategoriesApiResponse, IFilters} from '../../interfaces';
 
-export const NewsFilters = ({filters,changeFilter}) => {
 
-    const {data:dataCategories} = useFetch(getCategories)
+interface Props{
+    filters:IFilters;
+    changeFilter:(key:string,value:string |number | null) => void
+}
+
+export const NewsFilters = ({filters,changeFilter}:Props) => {
+
+    const {data:dataCategories} = useFetch<CategoriesApiResponse, null>(getCategories)
 
     return<div className={styles.filters}>
 

@@ -1,5 +1,5 @@
-export const formatData = ( date) => {
-    const options = {
+export const formatData = ( date:Date ) => {
+    const options:Intl.DateTimeFormatOptions = {
         weekday:"long",
         year:'numeric',
         month:"long",
@@ -7,5 +7,4 @@ export const formatData = ( date) => {
     }
 
     return date.toLocaleDateString('en-US',options)
-
 }

@@ -2,8 +2,12 @@ import React from 'react';
 import styles from '../BannerList/bannerList.module.css'
 import withSkeleton from "../../helpers/hocs/withSkeleton";
 import Banner from "../Banner/Banner";
+import {INews} from '../../interfaces';
 
-const BannerList = ({banners}) => {
+interface Props{
+    banners?:INews[] | null
+}
+const BannerList = ({banners}:Props) => {
     return<ul className={styles.banners}>
         {banners?.map(banner => {
             return (
@@ -14,6 +18,6 @@ const BannerList = ({banners}) => {
     ;
 }
 
-const BannerListWithSkeleton = withSkeleton(BannerList,'banner',10,'rowList')
+const BannerListWithSkeleton = withSkeleton<Props>(BannerList,'banner',10,'row')
 
 export default BannerListWithSkeleton;

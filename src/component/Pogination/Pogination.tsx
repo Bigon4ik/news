@@ -1,24 +1,29 @@
 import React from 'react';
 import styles from '../Pogination/pogination.module.css'
+import {IPaginationProps} from '../../interfaces';
 
-export const Pogination = ({totalPages,handlerNextPage,handlerPreviousPage,handlerPageClick,currentPage}) => {
+export const Pogination = ({totalPages,
+                               handleNextPage,
+                               handlePreviousPage,
+                               handlePageClick,
+                               currentPage}:IPaginationProps) => {
     return (
         <div className={styles.pogination}>
             <button
                 disabled={currentPage<=1}
-                onClick={handlerPreviousPage}
+                onClick={handlePreviousPage}
                 className={styles.arrow}>{"<"}</button>
             <div className={styles.list}>
                 {[...Array(totalPages)].map((_,index)=>{
                     return <button
                         disabled={index + 1 === currentPage}
-                        onClick={()=>handlerPageClick(index+1)}
+                        onClick={()=>handlePageClick(index+1)}
                         className={styles.pageNumber} key={index}>{index + 1}</button>
                 })}
             </div>
 
             <button
-                onClick={handlerNextPage}
+                onClick={handleNextPage}
                 disabled={currentPage >= totalPages}
                 className={styles.arrow}>{">"}</button>
 

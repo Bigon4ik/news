@@ -8,6 +8,7 @@ import {useDebounce} from "../../helpers/hooks/useDebounce";
 import {useFetch} from "../../helpers/hooks/useFetch";
 import {getNews} from "../../Api/apiNews";
 import PoginationWrapper from "../PoginationWrapper/PoginationWrapper";
+import {NewsApiResponse, ParamsType} from '../../interfaces';
 
 export const NewsByFilters = () => {
 
@@ -20,22 +21,22 @@ export const NewsByFilters = () => {
 
     const debouncedKeywords = useDebounce(filters.keywords,1500)
 
-    const {data,isLoading} = useFetch(getNews,{
+    const {data,isLoading} = useFetch <NewsApiResponse, ParamsType> (getNews,{
         ...filters,
         keywords:debouncedKeywords,
     })
 
-    const handlerNextPage = () => {
+    const handleNextPage = () => {
         if (filters.page_number < TOTAL_PAGES){
             changeFilter('page_number',filters.page_number + 1)
         }
     }
-    const handlerPreviousPage = () => {
+    const handlePreviousPage = () => {
         if (filters.page_number > 1){
             changeFilter('page_number',filters.page_number - 1)
         }
     }
-    const handlerPageClick = (pageNumber) => {
+    const handlePageClick = (pageNumber:number) => {
         changeFilter('page_number',pageNumber)
     }
 
@@ -46,9 +47,9 @@ export const NewsByFilters = () => {
         />
         <PoginationWrapper
             top bottom
-            handlerNextPage={handlerNextPage}
-            handlerPreviousPage={handlerPreviousPage}
-            handlerPageClick={handlerPageClick}
+            handleNextPage={handleNextPage}
+            handlePreviousPage={handlePreviousPage}
+            handlePageClick={handlePageClick}
             currentPage={filters.page_number}
             totalPages={TOTAL_PAGES}
         >
