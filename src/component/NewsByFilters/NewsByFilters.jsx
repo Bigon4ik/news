@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../NewsByFilters/newsByFilters.module.css'
-import Pogination from "../Pogination/Pogination";
 import {PAGE_SIZE, TOTAL_PAGES} from "../../constants/constants";
 import NewsList from "../NewsList/NewsList";
 import NewsFilters from "../NewsFilters/NewsFilters";
@@ -8,6 +7,7 @@ import {useFilters} from "../../helpers/hooks/useFilters";
 import {useDebounce} from "../../helpers/hooks/useDebounce";
 import {useFetch} from "../../helpers/hooks/useFetch";
 import {getNews} from "../../Api/apiNews";
+import PoginationWrapper from "../PoginationWrapper/PoginationWrapper";
 
 export const NewsByFilters = () => {
 
@@ -44,22 +44,16 @@ export const NewsByFilters = () => {
             filters={filters}
             changeFilter={changeFilter}
         />
-
-        <Pogination handlerNextPage={handlerNextPage}
-                    handlerPreviousPage={handlerPreviousPage}
-                    handlerPageClick={handlerPageClick}
-                    currentPage={filters.page_number}
-                    totalPages={TOTAL_PAGES}
-        />
-
-        <NewsList isLoading={isLoading} news={data?.news}/>
-
-        <Pogination handlerNextPage={handlerNextPage}
-                    handlerPreviousPage={handlerPreviousPage}
-                    handlerPageClick={handlerPageClick}
-                    currentPage={filters.page_number}
-                    totalPages={TOTAL_PAGES}
-        />
+        <PoginationWrapper
+            top bottom
+            handlerNextPage={handlerNextPage}
+            handlerPreviousPage={handlerPreviousPage}
+            handlerPageClick={handlerPageClick}
+            currentPage={filters.page_number}
+            totalPages={TOTAL_PAGES}
+        >
+            <NewsList isLoading={isLoading} news={data?.news}/>
+        </PoginationWrapper>
 
         </section>
     ;
