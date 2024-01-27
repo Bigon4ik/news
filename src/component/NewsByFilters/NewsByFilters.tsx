@@ -10,11 +10,7 @@ import {getNews} from "../../Api/apiNews";
 import PoginationWrapper from "../PoginationWrapper/PoginationWrapper";
 import {NewsApiResponse, ParamsType} from '../../interfaces';
 
-interface Props{
-    isDark:boolean
-}
-
-export const NewsByFilters = ({isDark}:Props) => {
+export const NewsByFilters = () => {
 
     const {filters,changeFilter} = useFilters({
         page_number:1,
@@ -48,7 +44,6 @@ export const NewsByFilters = ({isDark}:Props) => {
         <NewsFilters
             filters={filters}
             changeFilter={changeFilter}
-            isDark={isDark}
         />
         <PoginationWrapper
             top bottom
@@ -57,7 +52,6 @@ export const NewsByFilters = ({isDark}:Props) => {
             handlePageClick={handlePageClick}
             currentPage={filters.page_number}
             totalPages={TOTAL_PAGES}
-            isDark={isDark}
         >
             <NewsList isLoading={isLoading} news={data?.news}/>
         </PoginationWrapper>

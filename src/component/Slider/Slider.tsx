@@ -1,14 +1,14 @@
 import React, {useRef} from 'react';
 import styles from '../Slider/slider.module.css'
-import {INews} from '../../interfaces';
+import {useTheme} from '../../context/ThemeContext';
 
 interface Props{
     children:React.ReactElement;
     step?:number
-    isDark:boolean
 }
 
-export const Slider = ({isDark,children,step= 150}:Props) => {
+export const Slider = ({children,step= 150}:Props) => {
+    const {isDark} = useTheme();
 
     const sliderRef =  useRef<HTMLElement | null>(null)
 

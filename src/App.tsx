@@ -1,22 +1,19 @@
 import React, {createContext, useState} from 'react';
 import Header from './component/Header/Header';
-import {ThemeContext, ThemeProvider} from './context/ThemeContext';
 import Main from './pages/Main/Main';
+import {useTheme} from './context/ThemeContext';
 
 function App() {
+    const {isDark} = useTheme();
 
   return (
-
-      <ThemeProvider>
-          <div className={`app ${false ? 'dark': "light" }`}>
+          <div className={`app ${isDark ? 'dark': "light" }`}>
               <Header/>
               <div className="container">
-                  <Main isDark={false}/>
+                  <Main/>
               </div>
 
           </div>
-      </ThemeProvider>
-
   );
 }
 

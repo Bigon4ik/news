@@ -1,13 +1,17 @@
 import React from 'react';
 import styles from '../Pogination/pogination.module.css'
 import {IPaginationProps} from '../../interfaces';
+import {useTheme} from '../../context/ThemeContext';
 
-export const Pogination = ({isDark,
+export const Pogination = ({
                                totalPages,
                                handleNextPage,
                                handlePreviousPage,
                                handlePageClick,
                                currentPage}:IPaginationProps) => {
+
+    const {isDark} = useTheme();
+
     return (
         <div className={`${styles.pogination} ${isDark ? styles.dark : styles.light}`}>
             <button
