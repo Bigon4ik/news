@@ -1,16 +1,29 @@
 import React from 'react';
 import styles from '../NewsByFilters/newsByFilters.module.css'
 import Pogination from "../Pogination/Pogination";
-import {TOTAL_PAGES} from "../../constants/constants";
+import {PAGE_SIZE, TOTAL_PAGES} from "../../constants/constants";
 import NewsList from "../NewsList/NewsList";
 import NewsFilters from "../NewsFilters/NewsFilters";
+import {useFilters} from "../../helpers/hooks/useFilters";
+import {useDebounce} from "../../helpers/hooks/useDebounce";
+import {useFetch} from "../../helpers/hooks/useFetch";
+import {getNews} from "../../Api/apiNews";
 
-export const NewsByFilters = ({
-                                  filters,
-                                  changeFilter,
-                                  isLoading,
-                                  news,
-                              }) => {
+export const NewsByFilters = () => {
+
+    const {filters,changeFilter} = useFilters({
+        page_number:1,
+        page_size:PAGE_SIZE,
+        category:null,
+        keywords:"",
+    })
+
+    const debouncedKeywords = useDebounce(filters.keywords,1500)
+
+    const {data,isLoading} = useFetch(getNews,{
+        ...filters,
+        keywords:debouncedKeywords,
+    })
 
     const handlerNextPage = () => {
         if (filters.page_number < TOTAL_PAGES){
@@ -39,7 +52,7 @@ export const NewsByFilters = ({
                     totalPages={TOTAL_PAGES}
         />
 
-        <NewsList isLoading={isLoading} news={news}/>
+        <NewsList isLoading={isLoading} news={data?.news}/>
 
         <Pogination handlerNextPage={handlerNextPage}
                     handlerPreviousPage={handlerPreviousPage}
