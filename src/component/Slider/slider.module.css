@@ -4,6 +4,15 @@
     align-items: center;
     gap: 8px;
 }
+.slider.dark .arrow{
+    background-color: #23272f;
+    color: white;
+}
+
+.slider.light .arrow{
+    background-color: white;
+    color: black;
+}
 .arrow{
     border: none;
     background-color: #fff;

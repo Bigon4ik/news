@@ -11,16 +11,17 @@ import {CategoriesApiResponse, IFilters} from '../../interfaces';
 interface Props{
     filters:IFilters;
     changeFilter:(key:string,value:string |number | null) => void
+    isDark:boolean
 }
 
-export const NewsFilters = ({filters,changeFilter}:Props) => {
+export const NewsFilters = ({isDark,filters,changeFilter}:Props) => {
 
     const {data:dataCategories} = useFetch<CategoriesApiResponse, null>(getCategories)
 
     return<div className={styles.filters}>
 
         {dataCategories ? (
-                <Slider>
+                <Slider isDark={isDark}>
                     <Categories categories={dataCategories.categories}
                                 selectedCategory={filters.category}
                                 setSelectedCategory={(category) => changeFilter('category',category)}/>
@@ -28,6 +29,7 @@ export const NewsFilters = ({filters,changeFilter}:Props) => {
             ) : null}
 
         <Search keywords={filters.keywords}
+                isDark={isDark}
                 setKeywords={(keywords) => changeFilter('keywords',keywords)}/>
 
         </div>

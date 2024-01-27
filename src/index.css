@@ -12,3 +12,21 @@
     min-height: 100%;
 
 }
+
+.app.dark .container{
+    background-color: #23272f;
+}
+
+.app.light .container{
+    background-color: white;
+}
+.app.dark p,
+.app.dark h3,
+.app.dark h1{
+    color:white;
+}
+.app.light p,
+.app.light h3,
+.app.light h1{
+    color:black;
+}

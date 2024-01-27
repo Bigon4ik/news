@@ -3,13 +3,16 @@ import styles from '../Main/main.module.css'
 import LatestNews from "../../component/LatestNews/LatestNews";
 import NewsByFilters from "../../component/NewsByFilters/NewsByFilters";
 
-const Main = () => {
+interface Props{
+    isDark:boolean
+}
+const Main = ({isDark}:Props) => {
 
 
     return<main className={styles.main}>
         <LatestNews/>
 
-        <NewsByFilters/>
+        <NewsByFilters isDark={isDark}/>
     </main>
         ;
 }

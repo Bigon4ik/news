@@ -2,13 +2,14 @@ import React from 'react';
 import styles from '../Pogination/pogination.module.css'
 import {IPaginationProps} from '../../interfaces';
 
-export const Pogination = ({totalPages,
+export const Pogination = ({isDark,
+                               totalPages,
                                handleNextPage,
                                handlePreviousPage,
                                handlePageClick,
                                currentPage}:IPaginationProps) => {
     return (
-        <div className={styles.pogination}>
+        <div className={`${styles.pogination} ${isDark ? styles.dark : styles.light}`}>
             <button
                 disabled={currentPage<=1}
                 onClick={handlePreviousPage}
