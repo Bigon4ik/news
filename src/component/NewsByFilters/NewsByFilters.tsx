@@ -9,6 +9,7 @@ import {useFetch} from "../../helpers/hooks/useFetch";
 import {getNews} from "../../Api/apiNews";
 import PoginationWrapper from "../PoginationWrapper/PoginationWrapper";
 import {NewsApiResponse, ParamsType} from '../../interfaces';
+import {useGetNewsQuery} from '../../store/services/newsApi';
 
 export const NewsByFilters = () => {
 
@@ -21,10 +22,9 @@ export const NewsByFilters = () => {
 
     const debouncedKeywords = useDebounce(filters.keywords,1500)
 
-    const {data,isLoading} = useFetch <NewsApiResponse, ParamsType> (getNews,{
-        ...filters,
-        keywords:debouncedKeywords,
-    })
+    const { data, isLoading } = useGetNewsQuery({...filters,
+            keywords:debouncedKeywords,})
+
 
     const handleNextPage = () => {
         if (filters.page_number < TOTAL_PAGES){
