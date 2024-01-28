@@ -33,7 +33,7 @@ export const NewsFilters = ({filters}:Props) => {
 
         <Search keywords={filters.keywords}
                 setKeywords={(keywords) =>
-                    dispatch(setFilters({key:'category',value:keywords}))}/>
+                    dispatch(setFilters({key:'keywords',value:keywords}))}/>
 
         </div>
     ;

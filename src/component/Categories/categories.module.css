@@ -1,26 +1,28 @@
 .categories{
     display: flex;
     width: 100%;
-    gap: 8px;
+    gap: 20px;
     align-items: flex-start;
     box-sizing: border-box;
     overflow: auto;
     white-space: nowrap;
     /*scrollbar-width:none;*/
 }
-
 .item,
 .active{
     display: flex;
     align-items: center;
-    padding: 8px 16px;
+    padding: 12px 26px;
     border: none;
     border-radius: 32px;
-    background-color: #f2f4f5;
+    background-color: #9ccaee;
+    cursor: pointer;
 }
 .active{
-    background-color: #e7e7ff;
-    color: #6b4eff;
+    background-color: #106a9b;
+    color: white;
+    cursor: pointer;
+
 }
 
 ::-webkit-scrollbar{

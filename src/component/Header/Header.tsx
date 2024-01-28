@@ -8,14 +8,17 @@ import {useTheme} from '../../context/ThemeContext';
 export const Header = () => {
 
     const {isDark, toggleTheme} = useTheme();
-    return<header className={`${styles.header} ${isDark ? styles.dark : styles.light}`}>
+    return(
+         <header className={`${styles.header} ${isDark ? styles.dark : styles.light}`}>
+        {/*<header className={styles.header}>*/}
 
            <div className={styles.info}>
-               <h1 className={styles.title}>News</h1>
+               <h1 className={styles.title}>The latest news</h1>
                <p className={styles.date}>{formatData(new Date())}</p>
            </div>
-        <img src={isDark ? themeIcons.light : themeIcons.dark } width={30} alt="theme" onClick={toggleTheme}/>
+        <img src={isDark ? themeIcons.light : themeIcons.dark } width={40} alt="theme" onClick={toggleTheme}/>
         </header>
+    )
     ;
 }
 

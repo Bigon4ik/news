@@ -48,6 +48,7 @@ export const newsApi = createApi({
             },
         }),
         getCategories: builder.query<CategoriesApiResponse,null>({
+            // keepUnusedDataFor:0,
             query: () => {
                 return {
                     url:'available/categories',

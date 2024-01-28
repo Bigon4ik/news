@@ -26,7 +26,6 @@ export const Pogination = ({
                         className={styles.pageNumber} key={index}>{index + 1}</button>
                 })}
             </div>
-
             <button
                 onClick={handleNextPage}
                 disabled={currentPage >= totalPages}

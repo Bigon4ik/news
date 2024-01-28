@@ -7,7 +7,6 @@ interface State {
     news: INews[];
     filters:IFilters
 }
-
 const initialState: State = {
     news: [],
     filters: {
