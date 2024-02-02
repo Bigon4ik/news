@@ -16,7 +16,6 @@ export const Search = ({keywords,setKeywords}:Props) => {
                    className={styles.input}
                    onChange={(e)=>setKeywords(e.target.value)}
                    value={keywords}
-                   placeholder={'Search'}
             />
 
         </div>
